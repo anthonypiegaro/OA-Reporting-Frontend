@@ -1,0 +1,641 @@
+:root {
+  --primary-color: #222736;
+  --secondary-color: #333547;
+  --third-color: #494c60;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  /* background-color: #2e2b2b; */
+  background-color: var(--primary-color);
+  overflow-x: hidden;
+  min-height: 100vh;
+  height: fit-content;
+  overflow-y: scroll;
+}
+
+#root {
+  min-height: 100vh;
+  height: fit-content;
+  width: 100vw;
+  overflow-y: visible;
+}
+
+.app {
+  min-height: 100vh;
+  height: fit-content;
+  width: 100%;
+  max-width: 100vw;
+  color: #ffffff;
+  display: flex;
+  overflow-y: visible;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+  height: fit-content;
+  width: 100%;
+  overflow-y: visible;
+}
+
+.sidebar {
+  width: 20%;
+  height: 100vh;
+  position: -webkit-sticky; /* for Safari */
+  position: sticky;
+  top: 0;
+  background-color: var(--secondary-color);;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.sidebar-title {
+  height: 10%;
+  text-align: center;
+  font-weight: bold;
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-button {
+  height: 10%;
+  width: 100%;
+  background: none;
+  color: white;
+  border: None;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  -webkit-appearance: none; /* for WebKit browsers */
+  -moz-appearance: none;    /* for Firefox */
+  appearance: none;  
+  text-decoration: None;
+  transition: background-image 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.sidebar-button:last-of-type {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-button:hover {
+  background-image: linear-gradient(45deg, var(--secondary-color), var(--third-color)); /* Background gradient on hover */
+  transform: scale(1.05);
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  /* min-height: 100%; */
+  min-height: 100vh;
+  height: fit-content;
+  overflow-y: visible;
+}
+
+.report-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.report-content {
+  display: flex;
+  justify-content: center;
+  min-height: calc(100% - 60px);
+  height: fit-content;
+  flex-grow: 1;
+  overflow-y: visible;
+  overflow: visible;
+  padding-top: 1rem;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+.report-content-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.report-button {
+  background-color: var(--secondary-color); /* Initial background color, can be adjusted */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 50px; /* High border-radius for rounded, "soft" corners */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Shadow for depth */
+  transition: background-image 0.3s ease-in-out, transform 0.3s ease-in-out; /* Transition for smooth hover effects */
+  margin: 0.5rem;
+}
+
+.report-button:hover {
+  background-image: linear-gradient(45deg, var(--secondary-color), var(--third-color)); /* Background gradient on hover */
+  transform: scale(1.05); /* Slightly scale the button to make it "pop" */
+}
+
+.header {
+  width: 100%;
+  color: white; /* Text color for readability */
+  height: 60px; /* Fixed height */
+  display: flex;
+  align-items: center; /* Vertically center content */
+  justify-content: space-between; /* Horizontally space out items */
+  padding: 0 20px; /* Horizontal padding */
+  margin-top: 1rem;
+}
+
+.header-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* If you have icons or additional text, style them here */
+.header-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.pitching-report {
+  height: fit-content;
+  max-height: 100%;
+  width: 100%;
+  overflow: visible;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: flex-start;
+}
+
+.line-chart {
+  height: 20vh;
+  width: 90%;
+  background-color: var(--secondary-color); /* Initial background color, can be adjusted */
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 16px;
+  padding-right: 32px;
+  border-radius: 15px; /* High border-radius for rounded, "soft" corners */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Shadow for depth */
+  transition: background-image 0.3s ease-in-out, transform 0.3s ease-in-out; /* Transition for smooth hover effects */
+  margin: 0.5rem;
+}
+
+.line-chart:hover {
+  background-image: linear-gradient(45deg, var(--secondary-color), var(--third-color));; /* Background gradient on hover */
+  transform: scale(1.05); /* Slightly scale the button to make it "pop" */
+}
+
+.bar-chart-container {
+  display: flex;
+  flex-direction: column;
+  height: 35vh;
+  width: 70%;
+  background-color: var(--secondary-color); /* Initial background color, can be adjusted */
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 16px;
+  padding-right: 32px;
+  border-radius: 15px; /* High border-radius for rounded, "soft" corners */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Shadow for depth */
+  transition: background-image 0.3s ease-in-out, transform 0.3s ease-in-out; /* Transition for smooth hover effects */
+  margin: 0.5rem;
+}
+
+.bar-chart-container:hover {
+  background-image: linear-gradient(45deg, var(--secondary-color), var(--third-color));; /* Background gradient on hover */
+  transform: scale(1.05); /* Slightly scale the button to make it "pop" */
+}
+
+.bar-chart-title {
+  height: 10%;
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.bar-chart {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.bio-report {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.bio-card {
+  min-height: 20vh;
+  height: fit-content;
+  width: calc(20vh * 1.05);
+  background-color: var(--secondary-color); /* Initial background color, can be adjusted */
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 16px;
+  padding-right: 32px;
+  border-radius: 15px; /* High border-radius for rounded, "soft" corners */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Shadow for depth */
+  transition: background-image 0.3s ease-in-out, transform 0.3s ease-in-out; /* Transition for smooth hover effects */
+  margin: 0.5rem;
+}
+
+.bio-card:hover {
+  background-image: linear-gradient(45deg, var(--secondary-color), var(--third-color));; /* Background gradient on hover */
+  transform: scale(1.05); /* Slightly scale the button to make it "pop" */
+}
+
+.bio-card-title {
+  position: relative;
+  top: 0;
+  left: 0;
+  color: #989898;
+  font-size: 0.8rem;
+}
+
+.bio-card-score {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  text-shadow: 2px 2px 4px #3f3e3e;
+  word-wrap: break-word;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.card-entering,
+.card-entered {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+.profile-content {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-card {
+  height: 20vh;
+  width: calc(20vh * 1.05);
+  background-color: var(--secondary-color); /* Initial background color, can be adjusted */
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 16px;
+  padding-right: 32px;
+  border-radius: 15px; /* High border-radius for rounded, "soft" corners */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Shadow for depth */
+  transition: background-image 0.3s ease-in-out, transform 0.3s ease-in-out; /* Transition for smooth hover effects */
+  margin: 0.5rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-circle {
+  border: 16px solid var(--secondary-color); /* Light grey */
+  border-top: 16px solid white; /* Blue */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 2s linear infinite;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.mobility-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 1px;
+  height: fit-content;
+  width: 80%;
+  background-color: var(--secondary-color); /* Initial background color, can be adjusted */
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 16px;
+  padding-right: 32px;
+  border-radius: 15px; /* High border-radius for rounded, "soft" corners */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Shadow for depth */
+  transition: background-image 0.3s ease-in-out, transform 0.3s ease-in-out, min-height 0.4s ease; /* Transition for smooth hover effects */
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.mobility-card.expanded {
+  min-height: 30vh;
+}
+
+.mobility-card-title {
+  position: relative;
+  top: 0;
+  left: 0;
+  color: #989898;
+  font-size: 0.8rem;
+}
+
+.mobility-card-score-container {
+  display: flex;
+  align-items: center;
+}
+
+.mobility-card-score {
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  text-shadow: 2px 2px 4px #3f3e3e;
+  word-wrap: break-word;
+}
+
+.mobility-card-logo {
+  height: 100%;
+}
+
+.mobility-card-expand-button {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s ease, font-size 0.3s ease;
+}
+
+.mobility-card-expand-button:hover {
+  font-size: 2rem;
+}
+
+.mobility-card-expand-button.up {
+    transform: rotate(180deg);
+}
+
+.mobility-card-expanded-content {
+  flex-grow: 1;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobility-card-expanded-content * {
+  margin: 0.5rem;
+}
+
+.input-data-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  width: 80%;
+  background-color: var(--secondary-color); /* Initial background color, can be adjusted */
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 16px;
+  padding-right: 32px;
+  border-radius: 15px; /* High border-radius for rounded, "soft" corners */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Shadow for depth */
+  margin: 0.5rem;
+}
+
+.login-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  width: fit-content;
+  background-color: var(--secondary-color); /* Initial background color, can be adjusted */
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 15px; /* High border-radius for rounded, "soft" corners */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Shadow for depth */
+  margin: 0.5rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.date-card {
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  justify-self: center;
+  align-items: center;
+  height: fit-content;
+  width: fit-content;
+  background-color: var(--secondary-color); /* Initial background color, can be adjusted */
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 15px; /* High border-radius for rounded, "soft" corners */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Shadow for depth */
+  margin: 0.5rem;
+}
+
+.notification-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+  width: 40vw;
+  background-color: var(--secondary-color); /* Initial background color, can be adjusted */
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 15px; /* High border-radius for rounded, "soft" corners */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Shadow for depth */
+  margin: 0.5rem;
+}
+
+.notification-card h2 {
+  text-align: center;
+}
+
+.notification-card h1 {
+  text-align: center;
+}
+
+.notification-card p {
+  text-align: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Black with 50% transparency */
+  z-index: 5;
+}
+
+.hamburger {
+  display: none;
+  z-index: 4;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: var(--secondary-color); /* Initial background color, can be adjusted */
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 15px; /* High border-radius for rounded, "soft" corners */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); /* Shadow for depth */
+  transition: background-image 0.3s ease-in-out, transform 0.3s ease-in-out; /* Transition for smooth hover effects */
+  margin: 0.5rem;
+}
+
+.hamburger:hover {
+  background-image: linear-gradient(45deg, var(--secondary-color), var(--third-color));; /* Background gradient on hover */
+  transform: scale(1.05); /* Slightly scale the button to make it "pop" */
+}
+
+/* Media query for small screens */
+@media screen and (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    overflow: hidden;
+    transition: height 0.5s ease;
+  }
+
+  .sidebar.expanded {
+    display: block;
+    height: 100%;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .main-content {
+    width: 100%;
+  }
+
+  .notification-card {
+    height: fit-content;
+    width: 60vw;
+  }
+}
+
+.report-drill {
+  text-decoration: none;
+  color: inherit;
+  padding: 5px;
+  border-radius: 15px;
+  transition: background-image 0.3s ease-in-out, transform 0.3s ease-in-out; /* Transition for smooth hover effects */
+}
+
+.report-drill:hover {
+  background-image: linear-gradient(45deg, var(--secondary-color), var(--third-color));; /* Background gradient on hover */
+  transform: scale(1.05);
+}
+
+.landing {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing > * {
+  margin: 1rem;
+}
+
+.landing span {
+  font-size: 2rem;
+}
