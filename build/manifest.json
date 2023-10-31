@@ -1,0 +1,9 @@
+{
+  "short_name": "OA Reporting",
+  "name": "Optimum Athletes Athlete Reports",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
