@@ -7,6 +7,7 @@ import LoginPage from './views/LoginPage';
 import LandingPage from "./views/LandingPage";
 import ProtectedRoutes from './utils/ProtectRoutes';
 import ErrorBoundary from "./utils/ErrorBoundry";
+import TrainerReportPage from "./views/TrainerReportPage";
 
 function App() {
   const [isStaff, setIsStaff] = useState(
@@ -42,7 +43,10 @@ function App() {
         <ErrorBoundary>
           <Routes>
             <Route element={<ProtectedRoutes />}>
-              <Route path="/report" element={<ReportPage isStaff={isStaff} />} />
+              <Route 
+                path="/report" 
+                element={isStaff ? <TrainerReportPage isStaff={isStaff} /> : <ReportPage isStaff={isStaff} />}
+              />
               {isStaff && <Route path="/data" element={<DataPage isStaff={isStaff} />} />}
             </Route>
             <Route path="/login" element={<LoginPage setIsStaff={setIsStaff}/>} />
