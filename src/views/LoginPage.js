@@ -81,6 +81,7 @@ const LoginPage = ({setIsStaff}) => {
                         color="primary"
                         style={{ width: "250px", margin: "0.5rem" }}
                         onChange={(e) => setEmail(e.target.value)}
+                        inputProps={{ autoCapitalize: "none" }}
                     />
                     <TextField 
                         variant="standard"
