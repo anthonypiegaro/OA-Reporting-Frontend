@@ -20,6 +20,7 @@ const LoginPage = ({setIsStaff}) => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [animationClass, setAnimationClass] = useState('');
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -34,6 +35,7 @@ const LoginPage = ({setIsStaff}) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setLoading(true);
         try {
             const response = await fetch("/api/token/", {
                 method: "POST",
@@ -66,6 +68,7 @@ const LoginPage = ({setIsStaff}) => {
             console.log(error);
             setError("Network error: Unable to connect to server");
         }
+        setLoading(false);
     }
 
     return (
@@ -97,7 +100,10 @@ const LoginPage = ({setIsStaff}) => {
                         style={{ minWidth: "10%", width: "fit-content", padding: "0.5rem", margin: "0.5rem" }}
                         type="submit"
                     >
-                        Submit
+                        {loading ?
+                            <i className="fa-solid fa-spinner fa-spin" style={{color: "#ffffff"}}></i> :
+                            <p style={{margin: 0}}>Sign in</p>
+                        }
                     </Button>
                     {error && <div className="error">{error}</div>}
                 </form>

@@ -35,6 +35,7 @@ const Sidebar = ({isStaff}) =>  {
           <SidebarTitle title="Optimum Athletes" />
           <SideBarButton name="Reports" to="/report" />
           {isStaff && <SideBarButton name="Data" to="/data" />}
+          <SideBarButton name="Pitch Arsenal" to="/pitch-arsenal" />
           {isStaff && <SideBarButton name="Admin" onClick={handleAdminClick} />}
           <SideBarButton name="Logout" onClick={handleLogout} />
       </div>

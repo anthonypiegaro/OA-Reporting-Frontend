@@ -639,3 +639,22 @@ body {
 .landing span {
   font-size: 2rem;
 }
+
+.arsenal-report-sections {
+  width: 100%;
+}
+
+.arsenal-report-section {
+  margin-bottom: 1rem;
+}
+
+.pitch-arsenal-attribute {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.arsenal-report-metrics {
+  margin-bottom: 2rem;
+}

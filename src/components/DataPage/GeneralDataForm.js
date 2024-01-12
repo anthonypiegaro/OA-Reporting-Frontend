@@ -30,6 +30,7 @@ const GeneralDataForm = ({assessments, name, templateId, userId}) => {
     const [values, setValues] = useState({});
     const [submitted, setSubmitted] = useState(false);
     const [notification, setNotification] = useState("");
+    const [didNotTest, setDidNotTest] = useState([]);
 
     useEffect(() => {
         setValues({
@@ -63,7 +64,8 @@ const GeneralDataForm = ({assessments, name, templateId, userId}) => {
                     "templateId": templateId,
                     "userId": userId,
                     "date": date,
-                    "assessments": values
+                    "assessments": values,
+                    "didNotTest": didNotTest,
                 }),
             })
             .then(async response => {
@@ -172,6 +174,22 @@ const GeneralDataForm = ({assessments, name, templateId, userId}) => {
                             />
                         )
                     ))}
+                    <FormControl key={100} variant="standard" style={{ width: "250px", margin: "0.5rem" }} >
+                        <InputLabel id={`select-dnt-label`}>Did Not Test</InputLabel>
+                        <Select
+                            labelId={`select-dnt-label`}
+                            id={`select-dnt`}
+                            label={"Did Not Test"}
+                            multiple={true}
+                            value={didNotTest}
+                            onChange={(e) => setDidNotTest(e.target.value)}
+                        >
+                            {assessments.map((assessment) => (
+                                <MenuItem key={assessment.id} value={assessment.id}>{assessment.name}</MenuItem>
+                            ))}
+                        </Select>
+                        <FormHelperText>Select one of the following options</FormHelperText>
+                    </FormControl>
                 </Box>
                 <br />
                 <Button 

@@ -25,7 +25,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://powerful-river-55956-f7734fa52aa2.herokuapp.com",
+  "proxy": "http://127.0.0.1:8000",
   "eslintConfig": {
     "extends": [
       "react-app",
