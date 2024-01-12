@@ -9,7 +9,8 @@ import PitchArsenalReport from "../components/PitchArsenal/PitchArsenalReport";
 const PitchArsenalPage = ({isStaff}) => {
     const [animationClass, setAnimationClass] = useState('');
     const [type, setType] = useState("report");
-    const [user, setUser] = useState("");
+    const [athlete, setAthlete] = useState("");
+    const [athleteError, setAthleteError] = useState(false);
 
     useEffect(() => {
         setAnimationClass('card-entering');
@@ -34,9 +35,9 @@ const PitchArsenalPage = ({isStaff}) => {
                         <TypedText text={"Build"} />
                     </button>}
                 </div>
-                <UserSearchBar setUser={setUser} />
+                <UserSearchBar setUser={setAthlete} error={athleteError} />
                 <div className="report-content">
-                {(type === "build") ? <BuildPitchArsenalReport user={user} /> : <PitchArsenalReport user={user} />}
+                {(type === "build") ? <BuildPitchArsenalReport athlete={athlete} setAthleteError={setAthleteError}/> : <PitchArsenalReport athlete={athlete} />}
                 </div>
             </div>
         </div>

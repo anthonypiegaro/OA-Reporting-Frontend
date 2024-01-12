@@ -12,7 +12,7 @@ const customTheme = createTheme({
     },
 });
 
-const UserSearchBar = ({setUser}) => {
+const UserSearchBar = ({setUser, error}) => {
     const [users, setUsers] = useState([]);
 
     useEffect(() => {
@@ -35,6 +35,7 @@ const UserSearchBar = ({setUser}) => {
             <Autocomplete
                 disablePortal
                 id="combo-box-demo"
+                key={2}
                 options={users}
                 getOptionLabel={(user) => user.name}
                 sx={{ width: 300 }}
@@ -42,8 +43,13 @@ const UserSearchBar = ({setUser}) => {
                 style={{ alignSelf: 'center', marginTop: ".5rem" }}
                 onChange={(event, newValue) => {setUser(newValue);}}
             />
+            {error && <p key={1} style={{ textAlign: "center", color: "red"}}>Select an Athlete</p>}
         </ThemeProvider>
     );
+};
+
+UserSearchBar.defaultProps = {
+    error: false,
 };
 
 export default UserSearchBar;

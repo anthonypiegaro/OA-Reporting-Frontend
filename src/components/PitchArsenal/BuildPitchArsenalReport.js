@@ -11,6 +11,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import Button from "@mui/material/Button";
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import SubmitNotification from "../DataPage/SubmitNotification";
 
 const customTheme = createTheme({
     palette: {
@@ -21,12 +22,15 @@ const customTheme = createTheme({
     },
 });
 
-const BuildPitchArsenalReport = ({athlete}) => {
+const BuildPitchArsenalReport = ({athlete, setAthleteError}) => {
     const [loading, setLoading] = useState(true);
     const [values, setValues] = useState({});
     const [fetchedData, setFetchedData] = useState([]);
     const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
     const [errors, setErrors] = useState({});
+    const [submitted, setSubmitted] = useState(false);
+    const [notification, setNotification] = useState("");
+    const [waitingResponse, setWaitingResponse] = useState(false);
 
     useEffect(() => {
         setLoading(true);
@@ -96,12 +100,80 @@ const BuildPitchArsenalReport = ({athlete}) => {
         } 
     }, [fetchedData]);
 
+    const resetValues = () => {
+        if (fetchedData.length > 0) {
+            const newValues = {};
+            const errorValues = {};
+
+            fetchedData.forEach(pitch => {
+                const data = {};
+                const metrics = {};
+                const attributes = {};
+
+                const errorData = {};
+                const errorMetrics = {};
+                const errorAttributes = {};
+
+                data.pitchId = pitch.id;
+                data.notes = "";
+                data.throws = false;
+
+                metrics.velocity = "";
+                metrics.spinRate = "";
+                metrics.verticalBreak = "";
+                metrics.horizontalBreak = "";
+
+                errorMetrics.velocity = false
+                errorMetrics.spinRate = false
+                errorMetrics.verticalBreak = false
+                errorMetrics.horizontalBreak = false
+
+                data.metrics = metrics;
+                errorData.metrics = errorMetrics;
+
+                pitch.attributes.forEach(attribute => {
+                    attributes[attribute.id] = "";
+                    errorAttributes[attribute.id] = false;
+                });
+
+                data.attributes = attributes
+                errorData.attributes = errorAttributes;
+
+                newValues[pitch.id] = data;
+                errorValues[pitch.id] = errorData;
+            });
+
+
+            setValues(newValues);
+            setErrors(errorValues);
+        }
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        setWaitingResponse(true);
 
         console.log("form Submitted and being validated");
 
-        validate();
+        const valid = validate();
+
+        if (valid) {
+            const data = {
+                athlete: athlete,
+                date: date,
+                report: values,
+            };
+            console.log(data);
+            const responseCode = 201;
+            if (responseCode === 201) {
+                setNotification("Pitch Arsenal Report Created");
+                resetValues();
+            } else {
+                setNotification("An error occured");
+            }
+            setSubmitted(true);
+        }
+        setWaitingResponse(false);
     };
 
 
@@ -153,6 +225,14 @@ const BuildPitchArsenalReport = ({athlete}) => {
 
         let valid = true;
 
+        if (athlete === "") {
+            valid = false;
+            setAthleteError(true);
+            console.log("No Athlete");
+        } else {
+            setAthleteError(false);
+        }
+
         Object.entries(values).forEach(([pitchId, data]) => {
             if (data.throws) {
                 Object.entries(data.metrics).forEach(([metric, value]) => {
@@ -188,8 +268,6 @@ const BuildPitchArsenalReport = ({athlete}) => {
             }
         });
 
-        console.log(valid);
-
         return valid;
     };
 
@@ -198,6 +276,8 @@ const BuildPitchArsenalReport = ({athlete}) => {
             {(loading && (Object.keys(values).length === 0)) ? (
                 <CircularProgress />
             ) : (
+            <>
+            {submitted && <SubmitNotification setSubmitted={setSubmitted} notification={notification} />}
             <ThemeProvider theme={customTheme} > 
                 <form className={`input-data-form`}>
                     <Typography variant="h4" component="h2" sx={{ marginBottom: 3 }}>
@@ -317,10 +397,14 @@ const BuildPitchArsenalReport = ({athlete}) => {
                         type="submit"
                         onClick={handleSubmit}
                     >
-                        Submit
+                        {waitingResponse ?
+                            <i className="fa-solid fa-spinner fa-spin" style={{color: "#ffffff"}}></i> :
+                            <p style={{margin: 0}}>Submit</p>
+                        }
                     </Button>
                 </form>
             </ThemeProvider>
+            </>
             )}
         </>
     );
