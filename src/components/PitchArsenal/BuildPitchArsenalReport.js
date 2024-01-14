@@ -149,7 +149,7 @@ const BuildPitchArsenalReport = ({athlete, setAthleteError}) => {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setWaitingResponse(true);
 
@@ -163,17 +163,29 @@ const BuildPitchArsenalReport = ({athlete, setAthleteError}) => {
                 date: date,
                 report: values,
             };
-            console.log(data);
-            const responseCode = 201;
-            if (responseCode === 201) {
-                setNotification("Pitch Arsenal Report Created");
-                resetValues();
-            } else {
-                setNotification("An error occured");
-            }
-            setSubmitted(true);
+            await fetch("/api/pitch-arsenal/create-report/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`,
+                },
+                body: JSON.stringify({ data }),
+            })
+            .then(response => {
+                if (response.ok) {
+                    setNotification("Pitch Arsenal Report Created");
+                    resetValues();
+                } else {
+                    setNotification("An error occured");
+                }
+            })
+            .finally(() => {
+                setSubmitted(true);
+                setWaitingResponse(false);
+            });
+        } else {
+            setWaitingResponse(false);
         }
-        setWaitingResponse(false);
     };
 
 

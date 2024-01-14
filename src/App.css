@@ -658,3 +658,61 @@ body {
 .arsenal-report-metrics {
   margin-bottom: 2rem;
 }
+
+.pitch-arsenal-report {
+  height: fit-content;
+  max-height: 100%;
+  width: 100%;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.pitch-arsenal-date-picker {
+  margin: 1rem;
+  align-self: center;
+}
+
+.pitch-report {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pitch-report-card {
+  background-color: var(--secondary-color);
+  border-radius: 15px;
+  width: 90%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.pitch-report-card-header {
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.pitch-report-card-metrics {
+  border: 1px solid white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.pitch-report-card-metric {
+  margin: 0.5rem;
+}
+
+.pitch-report-card-scores {
+  border: 1px solid white;
+}
+
+.pitch-report-card-score {
+  border: 1px solid white;
+}
