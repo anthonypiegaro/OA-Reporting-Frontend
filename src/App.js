@@ -9,6 +9,7 @@ import ProtectedRoutes from './utils/ProtectRoutes';
 import ErrorBoundary from "./utils/ErrorBoundry";
 import TrainerReportPage from "./views/TrainerReportPage";
 import PitchArsenalPage from "./views/PitchArsenalPage";
+import PitchReportPage from "./views/PitchReportPage";
 
 function App() {
   const [isStaff, setIsStaff] = useState(
@@ -48,8 +49,8 @@ function App() {
                 path="/report" 
                 element={isStaff ? <TrainerReportPage isStaff={isStaff} /> : <ReportPage isStaff={isStaff} />}
               />
+              <Route path="/pitch-report" element={<PitchReportPage isStaff={isStaff} />} /> 
               {isStaff && <Route path="/data" element={<DataPage isStaff={isStaff} />} />}
-              <Route path="/pitch-arsenal" element={<PitchArsenalPage isStaff={isStaff}/>} />
             </Route>
             <Route path="/login" element={<LoginPage setIsStaff={setIsStaff}/>} />
             <Route path="/" element={<LandingPage />} />
